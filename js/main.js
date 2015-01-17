@@ -62,7 +62,7 @@ $("#artist-input").change(function() {
     success: function(data) {
 
       // If valid ID
-      if (data.artists.items[0] !== null) {
+      if (data.artists.items[0]) {
 
         var id = data.artists.items[0].id;
 
