@@ -160,7 +160,7 @@ $("#artist-input").bind("enterKey", function() {
 });
 
 $("#artist-input").keyup(function(e) {
-  if(e.keyCode == 13)
+  if(e.keyCode === 13)
   {
     $(this).trigger("enterKey");
   }
