@@ -1,1 +1,1 @@
-# discoversounds
+# discoversounds [![Build Status](https://travis-ci.org/dvrylc/discoversounds.svg?branch=master)](https://travis-ci.org/dvrylc/discoversounds)
