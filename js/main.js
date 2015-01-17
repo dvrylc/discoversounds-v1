@@ -32,10 +32,16 @@ $(document).ready(function() {
 });
 
 function research(artist) {
-  $("#artist-input").val(artist).trigger("change");
+  $("#artist-input").val(artist).trigger("enterKey");
 }
 
-$("#artist-input").change(function() {
+function reset() {
+  $(".artist").remove();
+  spinner.stop();
+  $("#artist-input").val("").focus();
+}
+
+$("#artist-input").bind("enterKey", function() {
 
   // Focus
   $(this).blur();
@@ -51,7 +57,7 @@ $("#artist-input").change(function() {
   $(".artist").remove();
 
   // Variables
-  var q = this.value.split(' ').join('+');
+  var q = encodeURIComponent(this.value);
 
   // Spotify 
   // Get artist ID
@@ -94,11 +100,11 @@ $("#artist-input").change(function() {
                   "<h2>" + artists[i].name + "</h2>" + 
                   "<a href=\"javascript:void(0)\" onClick=\"research(\'" + artists[i].name + "\');\">" + 
                   "<img src=\"img/outlets/research.png\"></a>" + 
-                  "<a href=\"https://www.youtube.com/results?search_query=" + artists[i].name.split(' ').join('+') + "\" alt=\"YouTube\" target=\"_blank\">" + 
+                  "<a href=\"https://www.youtube.com/results?search_query=" + encodeURIComponent(artists[i].name) + "\" alt=\"YouTube\" target=\"_blank\">" + 
                   "<img src=\"img/outlets/youtube.png\" alt=\"YouTube\"></a>" + 
-                  "<a href=\"https://play.spotify.com/search/" + artists[i].name.split(' ').join('%20') + "\" alt=\"Spotify Web\" target=\"_blank\">" + 
+                  "<a href=\"https://play.spotify.com/search/" + encodeURIComponent(artists[i].name) + "\" alt=\"Spotify Web\" target=\"_blank\">" + 
                   "<img src=\"img/outlets/spotify-web.png\" alt=\"Spotify Web\"></a>" + 
-                  "<a href=\"spotify:search:" + artists[i].name.split(' ').join('+') + "\" alt=\"Spotify App\">" + 
+                  "<a href=\"spotify:search:" + encodeURIComponent(artists[i].name) + "\" alt=\"Spotify App\">" + 
                   "<img src=\"img/outlets/spotify-app.png\" alt=\"Spotify App\"></a>" + 
                   "</div>" + 
                   "</div>");
@@ -151,4 +157,11 @@ $("#artist-input").change(function() {
     }
   });
 
+});
+
+$("#artist-input").keyup(function(e) {
+  if(e.keyCode == 13)
+  {
+    $(this).trigger("enterKey");
+  }
 });
