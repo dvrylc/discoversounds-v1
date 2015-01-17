@@ -1,0 +1,154 @@
+// Global variables
+var spinner;
+var target;
+var opts;
+
+$(document).ready(function() {
+
+  // Configure spin.js
+  opts = {
+    lines: 8, // The number of lines to draw
+    length: 1, // The length of each line
+    width: 8, // The line thickness
+    radius: 16, // The radius of the inner circle
+    corners: 1, // Corner roundness (0..1)
+    rotate: 0, // The rotation offset
+    direction: 1, // 1: clockwise, -1: counterclockwise
+    color: '#FFC107', // #rgb or #rrggbb or array of colors
+    speed: 1, // Rounds per second
+    trail: 25, // Afterglow percentage
+    shadow: false, // Whether to render a shadow
+    hwaccel: true, // Whether to use hardware acceleration
+    className: 'spinner', // The CSS class to assign to the spinner
+    zIndex: 2e9, // The z-index (defaults to 2000000000)
+    top: '50%', // Top position relative to parent
+    left: '50%' // Left position relative to parent
+  };
+  target = document.getElementsByTagName("body")[0];
+  spinner = new Spinner(opts);
+
+  $("#artist-input").focus();
+
+});
+
+function research(artist) {
+  $("#artist-input").val(artist).trigger("change");
+}
+
+$("#artist-input").change(function() {
+
+  // Focus
+  $(this).blur();
+
+  // spin.js
+  spinner.stop();
+  spinner.spin(target);
+
+  // Hide error
+  $(".error-message").hide();
+
+  // Remove existing results
+  $(".artist").remove();
+
+  // Variables
+  var q = this.value.split(' ').join('+');
+
+  // Spotify 
+  // Get artist ID
+  $.ajax({
+    type: "GET",
+    url: "https://api.spotify.com/v1/search?q=" + q + "&type=artist&limit=1",
+    dataType: "json",
+    success: function(data) {
+
+      // If valid ID
+      if (data.artists.items[0] !== null) {
+
+        var id = data.artists.items[0].id;
+
+        // Get related
+        $.ajax({
+          type: "GET",
+          url: "https://api.spotify.com/v1/artists/" + id + "/related-artists",
+          dataType: "json",
+          success: function(data) {
+
+            var artists = data.artists;
+
+            // Insert artists
+            if (artists.length > 0) {
+
+              for (var i = 0; i < artists.length; i++) {
+
+                var img = "";
+
+                try {
+                  img = artists[i].images[0].url;
+                } catch(err) {
+                  img = "img/error.png";
+                }
+
+                $(".content").append("<div class=\"artist\">" + 
+                  "<img src=\"" + img + "\">" + 
+                  "<div class=\"layover\">" + 
+                  "<h2>" + artists[i].name + "</h2>" + 
+                  "<a href=\"javascript:void(0)\" onClick=\"research(\'" + artists[i].name + "\');\">" + 
+                  "<img src=\"img/outlets/research.png\"></a>" + 
+                  "<a href=\"https://www.youtube.com/results?search_query=" + artists[i].name.split(' ').join('+') + "\" alt=\"YouTube\" target=\"_blank\">" + 
+                  "<img src=\"img/outlets/youtube.png\" alt=\"YouTube\"></a>" + 
+                  "<a href=\"https://play.spotify.com/search/" + artists[i].name.split(' ').join('%20') + "\" alt=\"Spotify Web\" target=\"_blank\">" + 
+                  "<img src=\"img/outlets/spotify-web.png\" alt=\"Spotify Web\"></a>" + 
+                  "<a href=\"spotify:search:" + artists[i].name.split(' ').join('+') + "\" alt=\"Spotify App\">" + 
+                  "<img src=\"img/outlets/spotify-app.png\" alt=\"Spotify App\"></a>" + 
+                  "</div>" + 
+                  "</div>");
+
+              }
+
+              // Set div height to be same as width
+              var width = $(".artist").width();
+              $(".artist").css("height", width + "px");
+
+              // Image formatting
+              $(".artist img").each(function() {
+                $(this).load(function() {
+                  if ($(this).width() >= $(this).height()) {
+                    $(this).addClass("landscape");
+                  } else {
+                    $(this).addClass("portrait");
+                  }
+                  $(this).fadeIn();
+                });
+              });
+
+              // Setup hovers
+              $(".artist").hover(function() {
+                $(".layover", this).fadeToggle("fast");
+              });
+
+            } else {
+              $(".error-message").html("<h3>Error: No related artists were found.</h3>");
+              $(".error-message").show();
+            }
+
+            // Remove spin.js
+            spinner.stop();
+
+          }
+        });
+
+      } else {
+        spinner.stop();
+        $(".error-message").html("<h3>Error: The artist that you entered was not found.</h3>");
+        $(".error-message").show();
+      }
+
+    },
+    error: function() {
+      spinner.stop();
+      $(".error-message").html("<h3>Error: You have entered an invalid artist.</h3>");
+      $(".error-message").show();
+    }
+  });
+
+});
