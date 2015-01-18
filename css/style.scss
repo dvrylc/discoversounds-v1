@@ -99,3 +99,14 @@ h2 {
   display: none;
   text-align: center;
 }
+
+.tooltipster-default {
+  background: #222;
+  border: 1px solid #FFC107;
+  color: white;
+  .tooltipster-content {
+    font-family: "Open Sans", sans-serif;
+    font-size: 12px;
+    padding: 5px;
+  }
+}

@@ -99,13 +99,13 @@ $("#artist-input").bind("enterKey", function() {
                   "<div class=\"layover\">" + 
                   "<h2>" + artists[i].name + "</h2>" + 
                   "<a href=\"javascript:void(0)\" onClick=\"research(\'" + artists[i].name + "\');\">" + 
-                  "<img src=\"img/outlets/research.png\"></a>" + 
+                  "<img src=\"img/outlets/research.png\" alt=\"New search\" class=\"tooltip\" title=\"New search\"></a>" + 
                   "<a href=\"https://www.youtube.com/results?search_query=" + encodeURIComponent(artists[i].name) + "\" alt=\"YouTube\" target=\"_blank\">" + 
-                  "<img src=\"img/outlets/youtube.png\" alt=\"YouTube\"></a>" + 
+                  "<img src=\"img/outlets/youtube.png\" alt=\"YouTube\" class=\"tooltip\" title=\"YouTube\"></a>" + 
                   "<a href=\"https://play.spotify.com/search/" + encodeURIComponent(artists[i].name) + "\" alt=\"Spotify Web\" target=\"_blank\">" + 
-                  "<img src=\"img/outlets/spotify-web.png\" alt=\"Spotify Web\"></a>" + 
+                  "<img src=\"img/outlets/spotify-web.png\" alt=\"Spotify Web\" class=\"tooltip\" title=\"Spotify Web\"></a>" + 
                   "<a href=\"spotify:search:" + encodeURIComponent(artists[i].name) + "\" alt=\"Spotify App\">" + 
-                  "<img src=\"img/outlets/spotify-app.png\" alt=\"Spotify App\"></a>" + 
+                  "<img src=\"img/outlets/spotify-app.png\" alt=\"Spotify App\" class=\"tooltip\" title=\"Spotify App\"></a>" + 
                   "</div>" + 
                   "</div>");
 
@@ -130,6 +130,13 @@ $("#artist-input").bind("enterKey", function() {
               // Setup hovers
               $(".artist").hover(function() {
                 $(".layover", this).fadeToggle("fast");
+              });
+
+              $('.tooltip').tooltipster({
+                position: "bottom",
+                onlyOne: true,
+                speed: 200,
+                delay: 0
               });
 
             } else {
