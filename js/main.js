@@ -104,7 +104,7 @@ $("#artist-input").bind("enterKey", function() {
                   "<img src=\"img/outlets/youtube.png\" alt=\"YouTube\" class=\"tooltip\" title=\"YouTube\"></a>" + 
                   "<a href=\"https://play.spotify.com/search/" + encodeURIComponent(artists[i].name) + "\" alt=\"Spotify Web\" target=\"_blank\">" + 
                   "<img src=\"img/outlets/spotify-web.png\" alt=\"Spotify Web\" class=\"tooltip\" title=\"Spotify Web\"></a>" + 
-                  "<a href=\"spotify:search:" + encodeURIComponent(artists[i].name) + "\" alt=\"Spotify App\">" + 
+                  "<a href=\"spotify:search:" + encodeURIComponent(artists[i].name) + "\" alt=\"Spotify App\" target=\"_blank\">" + 
                   "<img src=\"img/outlets/spotify-app.png\" alt=\"Spotify App\" class=\"tooltip\" title=\"Spotify App\"></a>" + 
                   "<a href=\"http://en.wikipedia.org/wiki/" + encodeURIComponent(artists[i].name) + "\" alt=\"Wikipedia\" target=\"_blank\">" + 
                   "<img src=\"img/outlets/wikipedia.png\" alt=\"Wikipedia\" class=\"tooltip\" title=\"Wikipedia\"></a>" + 
