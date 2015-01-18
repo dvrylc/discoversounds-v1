@@ -57,20 +57,27 @@ $("#artist-input").bind("enterKey", function() {
   $(".artist").remove();
 
   // Variables
-  var q = encodeURIComponent(this.value);
+  var q = encodeURIComponent(this.value.toLowerCase());
 
   // Spotify 
   // Get artist ID
   $.ajax({
     type: "GET",
-    url: "https://api.spotify.com/v1/search?q=" + q + "&type=artist&limit=1",
+    url: "https://api.spotify.com/v1/search?q=" + q + "&type=artist&limit=5",
     dataType: "json",
     success: function(data) {
 
       // If valid ID
       if (data.artists.items[0]) {
 
-        var id = data.artists.items[0].id;
+        var id = "";
+
+        // Selecting right ID
+        for (var x = 0; x < data.artists.items.length; x++) {
+          if (encodeURIComponent(data.artists.items[x].name.toLowerCase()) === q) {
+            id = data.artists.items[x].id;
+          }
+        }
 
         // Get related
         $.ajax({
@@ -108,6 +115,8 @@ $("#artist-input").bind("enterKey", function() {
                   "<img src=\"img/outlets/spotify-app.png\" alt=\"Spotify App\" class=\"tooltip\" title=\"Spotify App\"></a>" + 
                   "<a href=\"http://en.wikipedia.org/wiki/" + encodeURIComponent(artists[i].name) + "\" alt=\"Wikipedia\" target=\"_blank\">" + 
                   "<img src=\"img/outlets/wikipedia.png\" alt=\"Wikipedia\" class=\"tooltip\" title=\"Wikipedia\"></a>" + 
+                  "<a href=\"http://www.rdio.com/artist/" + encodeURIComponent(artists[i].name) + "\" alt=\"Rdio\" target=\"_blank\">" + 
+                  "<img src=\"img/outlets/rdio.png\" alt=\"Rdio\" class=\"tooltip\" title=\"Rdio\"></a>" + 
                   "</div>" + 
                   "</div>");
 
