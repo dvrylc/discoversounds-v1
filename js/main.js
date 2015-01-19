@@ -110,7 +110,7 @@ $("#artist-input").bind("enterKey", function() {
                   "<div class=\"layover\">" + 
                   "<h2>" + artists[i].name + "</h2>" + 
                   "<a href=\"javascript:void(0)\" onClick=\"research(\'" + artists[i].name + "\');\">" + 
-                  "<img src=\"img/outlets/research.png\" alt=\"New search\" class=\"tooltip\" title=\"New search\"></a>" + 
+                  "<img src=\"img/outlets/research.png\" alt=\"Search this artist\" class=\"tooltip\" title=\"Search this artist\"></a>" + 
                   "<a href=\"https://www.youtube.com/results?search_query=" + encodeURIComponent(artists[i].name) + "\" alt=\"YouTube\" target=\"_blank\">" + 
                   "<img src=\"img/outlets/youtube.png\" alt=\"YouTube\" class=\"tooltip\" title=\"YouTube\"></a>" + 
                   "<a href=\"http://en.wikipedia.org/wiki/" + encodeURIComponent(artists[i].name) + "\" alt=\"Wikipedia\" target=\"_blank\">" + 
