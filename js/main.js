@@ -57,8 +57,8 @@ $("#artist-input").bind("enterKey", function() {
   $(".artist").remove();
 
   // Variables
-  var rq = this.value;
-  var q = encodeURIComponent(this.value);
+  var rq = this.value.trim();
+  var q = encodeURIComponent(rq);
 
   // Spotify 
   // Get artist ID
