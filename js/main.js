@@ -57,7 +57,8 @@ $("#artist-input").bind("enterKey", function() {
   $(".artist").remove();
 
   // Variables
-  var q = encodeURIComponent(this.value.toLowerCase());
+  var rq = this.value;
+  var q = encodeURIComponent(this.value);
 
   // Spotify 
   // Get artist ID
@@ -67,17 +68,20 @@ $("#artist-input").bind("enterKey", function() {
     dataType: "json",
     success: function(data) {
 
+      var id = null;
+
       // If valid ID
       if (data.artists.items[0]) {
-
-        var id = "";
-
         // Selecting right ID
         for (var x = 0; x < data.artists.items.length; x++) {
-          if (encodeURIComponent(data.artists.items[x].name.toLowerCase()) === q) {
+          if (data.artists.items[x].name.toUpperCase() === rq.toUpperCase()) {
             id = data.artists.items[x].id;
           }
         }
+      }
+
+      // If valid ID
+      if (id !== null) {
 
         // Get related
         $.ajax({
