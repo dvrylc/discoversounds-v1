@@ -109,14 +109,14 @@ $("#artist-input").bind("enterKey", function() {
                   "<img src=\"img/outlets/research.png\" alt=\"New search\" class=\"tooltip\" title=\"New search\"></a>" + 
                   "<a href=\"https://www.youtube.com/results?search_query=" + encodeURIComponent(artists[i].name) + "\" alt=\"YouTube\" target=\"_blank\">" + 
                   "<img src=\"img/outlets/youtube.png\" alt=\"YouTube\" class=\"tooltip\" title=\"YouTube\"></a>" + 
-                  "<a href=\"https://play.spotify.com/search/" + encodeURIComponent(artists[i].name) + "\" alt=\"Spotify Web\" target=\"_blank\">" + 
-                  "<img src=\"img/outlets/spotify-web.png\" alt=\"Spotify Web\" class=\"tooltip\" title=\"Spotify Web\"></a>" + 
-                  "<a href=\"spotify:search:" + encodeURIComponent(artists[i].name) + "\" alt=\"Spotify App\" target=\"_blank\">" + 
-                  "<img src=\"img/outlets/spotify-app.png\" alt=\"Spotify App\" class=\"tooltip\" title=\"Spotify App\"></a>" + 
                   "<a href=\"http://en.wikipedia.org/wiki/" + encodeURIComponent(artists[i].name) + "\" alt=\"Wikipedia\" target=\"_blank\">" + 
-                  "<img src=\"img/outlets/wikipedia.png\" alt=\"Wikipedia\" class=\"tooltip\" title=\"Wikipedia\"></a>" + 
+                  "<img src=\"img/outlets/wikipedia.png\" alt=\"Wikipedia\" class=\"tooltip\" title=\"Wikipedia\"></a><br>" + 
+                  "<a href=\"spotify:search:" + encodeURIComponent(artists[i].name) + "\" alt=\"Spotify\" target=\"_blank\">" + 
+                  "<img src=\"img/outlets/spotify.png\" alt=\"Spotify\" class=\"tooltip\" title=\"Spotify\"></a>" + 
                   "<a href=\"http://www.rdio.com/artist/" + encodeURIComponent(artists[i].name) + "\" alt=\"Rdio\" target=\"_blank\">" + 
                   "<img src=\"img/outlets/rdio.png\" alt=\"Rdio\" class=\"tooltip\" title=\"Rdio\"></a>" + 
+                  "<a href=\"http://grooveshark.com/#!/" + artists[i].name.split(" ").join("_") + "\" alt=\"Grooveshark\" target=\"_blank\">" + 
+                  "<img src=\"img/outlets/grooveshark.png\" alt=\"Grooveshark\" class=\"tooltip\" title=\"Grooveshark\"></a>" + 
                   "</div>" + 
                   "</div>");
 

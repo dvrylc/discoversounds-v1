@@ -27,7 +27,6 @@ a {
 
 h2 {
   font-weight: 300;
-  margin-top: 25%;
   border-bottom: 1px solid white;
 }
 
@@ -36,10 +35,16 @@ h2 {
   .artist {
     width: 50%;
   }
+  h2 {
+    margin-top: 15%;
+  }
 }
 @media only screen and (min-width : 768px){
   .artist {
     width: 25%;
+  }
+  h2 {
+    margin-top: 25%;
   }
 }
 .artist {
