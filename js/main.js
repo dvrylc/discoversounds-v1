@@ -111,10 +111,12 @@ $("#artist-input").bind("enterKey", function() {
                   "<h2>" + artists[i].name + "</h2>" + 
                   "<a href=\"javascript:void(0)\" onClick=\"research(\'" + artists[i].name + "\');\">" + 
                   "<img src=\"img/outlets/research.png\" alt=\"Search this artist\" class=\"tooltip\" title=\"Search this artist\"></a>" + 
-                  "<a href=\"https://www.youtube.com/results?search_query=" + encodeURIComponent(artists[i].name) + "\" alt=\"YouTube\" target=\"_blank\">" + 
-                  "<img src=\"img/outlets/youtube.png\" alt=\"YouTube\" class=\"tooltip\" title=\"YouTube\"></a>" + 
+                  "<a href=\"http://www.discogs.com/search/?q=" + encodeURIComponent(artists[i].name) + "\" alt=\"Discogs\" target=\"_blank\">" + 
+                  "<img src=\"img/outlets/discogs.png\" alt=\"Discogs\" class=\"tooltip\" title=\"Discogs\"></a>" + 
                   "<a href=\"http://en.wikipedia.org/wiki/" + encodeURIComponent(artists[i].name) + "\" alt=\"Wikipedia\" target=\"_blank\">" + 
                   "<img src=\"img/outlets/wikipedia.png\" alt=\"Wikipedia\" class=\"tooltip\" title=\"Wikipedia\"></a><br>" + 
+                  "<a href=\"https://www.youtube.com/results?search_query=" + encodeURIComponent(artists[i].name) + "\" alt=\"YouTube\" target=\"_blank\">" + 
+                  "<img src=\"img/outlets/youtube.png\" alt=\"YouTube\" class=\"tooltip\" title=\"YouTube\"></a>" + 
                   "<a href=\"spotify:search:" + encodeURIComponent(artists[i].name) + "\" alt=\"Spotify\" target=\"_blank\">" + 
                   "<img src=\"img/outlets/spotify.png\" alt=\"Spotify\" class=\"tooltip\" title=\"Spotify\"></a>" + 
                   "<a href=\"http://www.rdio.com/artist/" + encodeURIComponent(artists[i].name) + "\" alt=\"Rdio\" target=\"_blank\">" + 
