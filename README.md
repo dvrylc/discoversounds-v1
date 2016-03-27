@@ -1,1 +1,1 @@
-# discoversounds [![Build Status](https://travis-ci.org/dvrylc/discoversounds.svg?branch=master)](https://travis-ci.org/dvrylc/discoversounds) [![Code Climate](https://codeclimate.com/github/dvrylc/discoversounds/badges/gpa.svg)](https://codeclimate.com/github/dvrylc/discoversounds)
+# discoversounds [![Build Status](https://travis-ci.org/dvrylc/discoversounds-v1.svg?branch=master)](https://travis-ci.org/dvrylc/discoversounds-v1)
